@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonApplication2", "PythonApplication2\PythonApplication2.pyproj", "{48C49287-80D1-4B4F-811A-5B61035D5D9C}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "STAT72000_Used_Car_Data", "STAT72000_Used_Car_Data\STAT72000_Used_Car_Data.pyproj", "{FCD5B781-D3C3-47EB-8968-C2A653C2CC4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,8 +11,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{48C49287-80D1-4B4F-811A-5B61035D5D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48C49287-80D1-4B4F-811A-5B61035D5D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCD5B781-D3C3-47EB-8968-C2A653C2CC4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCD5B781-D3C3-47EB-8968-C2A653C2CC4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

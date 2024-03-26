@@ -12,7 +12,7 @@ sns.set_theme(style="darkgrid")
 
 
 ############PREPROCESSING#################
-data = pd.read_csv("DataSet/Car details v3.csv")
+data = pd.read_csv("../DataSet/Car details v3.csv")
 data.describe()
 
 data.head()
