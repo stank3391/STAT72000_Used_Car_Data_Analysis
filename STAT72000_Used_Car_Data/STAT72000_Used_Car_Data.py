@@ -6,13 +6,20 @@ import seaborn as sns
 import warnings
 import plotly.express as px
 from plotly.subplots import make_subplots
+import os
 
 warnings.filterwarnings('ignore')
 sns.set_theme(style="darkgrid")
 
 
 ############PREPROCESSING#################
-data = pd.read_csv("../DataSet/Car details v3.csv")
+try:
+    print("original path")
+    data = pd.read_csv("../DataSet/Car details v3.csv")
+except:
+    print("works on my machine path")
+    data = pd.read_csv("./DataSet/Car details v3.csv")
+
 data.describe()
 
 data.head()
