@@ -64,30 +64,82 @@ y = mmScaler_y.fit_transform(y)
 
 
 #############DATA ANALYSIS####################
-import plotly.graph_objects as go
-correlation_matrix = data_new.corr()
+# import plotly.graph_objects as go
+# correlation_matrix = data_new.corr()
 
-corr = go.Heatmap(
-    z = correlation_matrix.values,
-    x = correlation_matrix.columns,
-    y = correlation_matrix.columns,
-    colorscale='RdYlBu',
-    colorbar=dict(title='Correlation')
-)
+# corr = go.Heatmap(
+#     z = correlation_matrix.values,
+#     x = correlation_matrix.columns,
+#     y = correlation_matrix.columns,
+#     colorscale='RdYlBu',
+#     colorbar=dict(title='Correlation')
+# )
 
-layout = go.Layout(
-    title='Heatmap of Correlation',
-        xaxis=dict(title='Columns'),
-    yaxis=dict(title='Columns'),
-    height= 800
-)
+# layout = go.Layout(
+#     title='Heatmap of Correlation',
+#         xaxis=dict(title='Columns'),
+#     yaxis=dict(title='Columns'),
+#     height= 800
+# )
 
-fig = go.Figure(data=corr, layout=layout)
-fig.show()
-correlations = data_new.corrwith(data_new['selling_price'])
-correlations
-for column in data_new.columns:
-    sns.scatterplot(data=data_new, x=column, y='selling_price')
-    plt.title(f"Scatter Plot between {column} and selling_price")
-    plt.show()
+# fig = go.Figure(data=corr, layout=layout)
+# fig.show()
+# correlations = data_new.corrwith(data_new['selling_price'])
+# correlations
+# for column in data_new.columns:
+#     sns.scatterplot(data=data_new, x=column, y='selling_price')
+#     plt.title(f"Scatter Plot between {column} and selling_price")
+#     plt.show()
 
+
+
+# #Seats vs Selling Price
+# sns.scatterplot(data=data_new, x='seats', y='selling_price')
+# plt.title(f"Seats vs Selling Price")
+# plt.show()
+
+# #Seats Count
+# sns.countplot(data=data_new, x='seats')
+# plt.title(f"Seats vs Selling Price")
+# plt.show()
+
+# #Seats Histogram
+# sns.histplot(data=data_new, x='seats')
+# plt.title(f"Number of Seats in Cars")
+# plt.show()
+
+# #Seats Bar
+# sns.barplot(data=data_new, x='seats', y='selling_price')
+# plt.title(f"Seats vs Selling Price")
+# plt.show()
+
+df = pd.DataFrame(data);
+print(" -- Seats -- ")
+print("Mean: ")
+print(df['seats'].mean());
+print("Median: ")
+print(df['seats'].median());
+print("Max: ")
+print(df['seats'].max());
+print("Min: ")
+print(df['seats'].min());
+print("Standard Deviation: ")
+print(df['seats'].std());
+print("Count: ")
+print(df['seats'].count());
+
+
+
+print(" -- Fuel Type -- ")
+#print("Mean: ")
+#print(df['fuel'].mean());
+#print("Median: ")
+#print(df['fuel'].median());
+print("Max: ")
+print(df['fuel'].max());
+print("Min: ")
+print(df['fuel'].min());
+#print("Standard Deviation: ")
+#print(df['fuel'].std());
+print("Count: ")
+print(df['fuel'].count());
