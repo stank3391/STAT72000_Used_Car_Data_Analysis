@@ -48,6 +48,8 @@ data_new = pd.get_dummies(data=data, columns=['fuel'], drop_first=True, dtype=in
 data_new.head()
 data_new['transmission'] = data_new['transmission'].replace({'Automatic': 1, 'Manual': 0})
 data_new.head()
+#data_new['fuel'] = data_new['fuel'].replace({'fuel_Diesel': 2, 'fuel_LPG': 1, 'fuel_Petrol': 0})
+#data_new.head()
 
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, LabelEncoder
 mmScaler = MinMaxScaler()
@@ -113,33 +115,61 @@ y = mmScaler_y.fit_transform(y)
 # plt.title(f"Seats vs Selling Price")
 # plt.show()
 
-df = pd.DataFrame(data);
-print(" -- Seats -- ")
-print("Mean: ")
-print(df['seats'].mean());
-print("Median: ")
-print(df['seats'].median());
-print("Max: ")
-print(df['seats'].max());
-print("Min: ")
-print(df['seats'].min());
-print("Standard Deviation: ")
-print(df['seats'].std());
-print("Count: ")
-print(df['seats'].count());
+df = pd.DataFrame(data_new);
+# print(" -- Seats -- ")
+# print("Mean: ")
+# print(df['seats'].mean());
+# print("Median: ")
+# print(df['seats'].median());
+# print("Max: ")
+# print(df['seats'].max());
+# print("Min: ")
+# print(df['seats'].min());
+# print("Standard Deviation: ")
+# print(df['seats'].std());
+# print("Count: ")
+# print(df['seats'].count());
 
 
 
 print(" -- Fuel Type -- ")
-#print("Mean: ")
-#print(df['fuel'].mean());
-#print("Median: ")
-#print(df['fuel'].median());
-print("Max: ")
-print(df['fuel'].max());
-print("Min: ")
-print(df['fuel'].min());
-#print("Standard Deviation: ")
-#print(df['fuel'].std());
-print("Count: ")
-print(df['fuel'].count());
+
+diesel = df['fuel_Diesel']
+lpg = df['fuel_LPG']
+petrol = df['fuel_Petrol']
+
+dcount = diesel.value_counts()[1]
+lcount = lpg.value_counts()[1]
+pcount = petrol.value_counts()[1]
+
+
+
+# declaring data 
+data = [dcount, lcount, pcount] 
+keys = ['Diesel', 'LPG', 'Petrol'] 
+palette_color = sns.color_palette('bright') 
+plt.pie(data, labels=keys, colors=palette_color, autopct='%.0f%%') 
+plt.show() 
+
+print("finished?")
+
+#frames = [diesel, lpg, petrol]
+
+#fuel = pd.concat(frames)
+
+
+#print(fuel)
+
+# print("Median: ")
+# print(fuel.median());
+# print("Max: ")
+# print(fuel.max());
+# print("Min: ")
+# print(fuel.min());
+# print("Standard Deviation: ")
+# print(fuel.std());
+# print("Count: ")
+# print(fuel.count());
+
+
+# df.groupby(['fuel_Diesel']).sum().plot(kind='pie', y=fuel.values)
