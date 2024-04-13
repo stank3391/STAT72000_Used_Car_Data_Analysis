@@ -116,6 +116,8 @@ y = mmScaler_y.fit_transform(y)
 # plt.show()
 
 df = pd.DataFrame(data_new);
+
+
 # print(" -- Seats -- ")
 # print("Mean: ")
 # print(df['seats'].mean());
@@ -132,6 +134,51 @@ df = pd.DataFrame(data_new);
 
 
 
+# declaring data 
+
+seats = df['seats']
+#print(seatKeys)
+#seatValues = df['seats']
+#print(seatValues)
+
+# testValues = []
+# testLabels = []
+
+
+
+
+
+
+# for i in range(2, 14):
+#     testLabels.append(i)
+#     testValues.append(seats.value_counts()[i])
+
+# print(testValues)
+# print(testLabels)
+
+# plt.pie(testValues, labels=testLabels) 
+# plt.show() 
+
+
+
+
+
+
+
+
+testValues = seats.value_counts()
+
+
+print(testValues.get(1))
+print(testValues.get(2))
+print(testValues.get(3))
+print(testValues.get(4))
+
+
+plt.pie(testValues, labels=testValues)
+plt.show() 
+
+
 print(" -- Fuel Type -- ")
 
 diesel = df['fuel_Diesel']
@@ -144,12 +191,71 @@ pcount = petrol.value_counts()[1]
 
 
 
+
 # declaring data 
 data = [dcount, lcount, pcount] 
 keys = ['Diesel', 'LPG', 'Petrol'] 
 palette_color = sns.color_palette('bright') 
 plt.pie(data, labels=keys, colors=palette_color, autopct='%.0f%%') 
 plt.show() 
+
+
+
+
+#drop the rows
+#diesel = diesel.drop(diesel == 0)
+diesel = diesel.drop(diesel[diesel == 0].index)
+diesel = diesel.replace(1,0)
+diesel = diesel.rename("fuel_type")
+lpg = lpg.drop(lpg[lpg == 0].index)
+lpg = lpg.replace(1,1)
+lpg = lpg.rename("fuel_type")
+petrol = petrol.drop(petrol[petrol == 0].index)
+petrol = petrol.replace(1,2)
+petrol = petrol.rename("fuel_type")
+
+
+
+#diesel.to_frame().join(lpg).join(petrol)
+
+#result = diesel.append([lpg, petrol])
+
+
+frames = [diesel, lpg, petrol]
+
+result = pd.concat(frames, axis=0)
+
+
+
+
+print(diesel)
+print(lpg)
+print(petrol)
+print(result)
+
+
+print("Mean: ")
+print(result.mean());
+print("Median: ")
+print(result.median());
+print("Max: ")
+print(result.max());
+print("Min: ")
+print(result.min());
+print("Standard Deviation: ")
+print(result.std());
+print("Count: ")
+print(result.count());
+
+testValues = result.value_counts()
+
+plt.pie(testValues, labels=testValues)
+plt.show() 
+
+#result = pd.concat(frames, axis = 0)
+
+
+
 
 print("finished?")
 
