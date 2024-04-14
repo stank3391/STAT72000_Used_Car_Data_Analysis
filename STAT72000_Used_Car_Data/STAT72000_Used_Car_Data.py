@@ -64,218 +64,38 @@ x = mmScaler.fit_transform(x)
 y = mmScaler_y.fit_transform(y)
 
 
+#### ACTUAL CODE HEREEEEEEE REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
-#############DATA ANALYSIS####################
-# import plotly.graph_objects as go
-# correlation_matrix = data_new.corr()
+# for column in data_new.columns:
+#     print(column + "\n")
+#     df = pd.DataFrame(data_new)
+#     print("Mean: ")
+#     print(df[column].mean());
+#     print("Median: ")
+#     print(df[column].median());
+#     print("Max: ")
+#     print(df[column].max());
+#     print("Min: ")
+#     print(df[column].min());
+#     print("Standard Deviation: ")
+#     print(df[column].std());
+#     print("Count: ")
+#     print(df[column].count());
+#     print("\n\n\n")
 
-# corr = go.Heatmap(
-#     z = correlation_matrix.values,
-#     x = correlation_matrix.columns,
-#     y = correlation_matrix.columns,
-#     colorscale='RdYlBu',
-#     colorbar=dict(title='Correlation')
-# )
-
-# layout = go.Layout(
-#     title='Heatmap of Correlation',
-#         xaxis=dict(title='Columns'),
-#     yaxis=dict(title='Columns'),
-#     height= 800
-# )
-
-# fig = go.Figure(data=corr, layout=layout)
-# fig.show()
-# correlations = data_new.corrwith(data_new['selling_price'])
-# correlations
 # for column in data_new.columns:
 #     sns.scatterplot(data=data_new, x=column, y='selling_price')
 #     plt.title(f"Scatter Plot between {column} and selling_price")
 #     plt.show()
 
+# for column in data_new.columns:
+#     testValues = data_new[column].value_counts()
+#     plt.pie(testValues, labels=testValues.index)    
+#     plt.title(f"Percentages of {column}")
+#     plt.show()
+
+# for column in data_new.columns:
+#       sns.histplot(data=data_new, x=column)
+#       plt.title(f"Histogram for {column}")
+#       plt.show()
 
-
-# #Seats vs Selling Price
-# sns.scatterplot(data=data_new, x='seats', y='selling_price')
-# plt.title(f"Seats vs Selling Price")
-# plt.show()
-
-# #Seats Count
-# sns.countplot(data=data_new, x='seats')
-# plt.title(f"Seats vs Selling Price")
-# plt.show()
-
-# #Seats Histogram
-# sns.histplot(data=data_new, x='seats')
-# plt.title(f"Number of Seats in Cars")
-# plt.show()
-
-# #Seats Bar
-# sns.barplot(data=data_new, x='seats', y='selling_price')
-# plt.title(f"Seats vs Selling Price")
-# plt.show()
-
-df = pd.DataFrame(data_new);
-
-
-# print(" -- Seats -- ")
-# print("Mean: ")
-# print(df['seats'].mean());
-# print("Median: ")
-# print(df['seats'].median());
-# print("Max: ")
-# print(df['seats'].max());
-# print("Min: ")
-# print(df['seats'].min());
-# print("Standard Deviation: ")
-# print(df['seats'].std());
-# print("Count: ")
-# print(df['seats'].count());
-
-
-
-# declaring data 
-
-seats = df['seats']
-#print(seatKeys)
-#seatValues = df['seats']
-#print(seatValues)
-
-# testValues = []
-# testLabels = []
-
-
-
-
-
-
-# for i in range(2, 14):
-#     testLabels.append(i)
-#     testValues.append(seats.value_counts()[i])
-
-# print(testValues)
-# print(testLabels)
-
-# plt.pie(testValues, labels=testLabels) 
-# plt.show() 
-
-
-
-
-
-
-
-
-testValues = seats.value_counts()
-
-
-print(testValues.get(1))
-print(testValues.get(2))
-print(testValues.get(3))
-print(testValues.get(4))
-
-
-plt.pie(testValues, labels=testValues)
-plt.show() 
-
-
-print(" -- Fuel Type -- ")
-
-diesel = df['fuel_Diesel']
-lpg = df['fuel_LPG']
-petrol = df['fuel_Petrol']
-
-dcount = diesel.value_counts()[1]
-lcount = lpg.value_counts()[1]
-pcount = petrol.value_counts()[1]
-
-
-
-
-# declaring data 
-data = [dcount, lcount, pcount] 
-keys = ['Diesel', 'LPG', 'Petrol'] 
-palette_color = sns.color_palette('bright') 
-plt.pie(data, labels=keys, colors=palette_color, autopct='%.0f%%') 
-plt.show() 
-
-
-
-
-#drop the rows
-#diesel = diesel.drop(diesel == 0)
-diesel = diesel.drop(diesel[diesel == 0].index)
-diesel = diesel.replace(1,0)
-diesel = diesel.rename("fuel_type")
-lpg = lpg.drop(lpg[lpg == 0].index)
-lpg = lpg.replace(1,1)
-lpg = lpg.rename("fuel_type")
-petrol = petrol.drop(petrol[petrol == 0].index)
-petrol = petrol.replace(1,2)
-petrol = petrol.rename("fuel_type")
-
-
-
-#diesel.to_frame().join(lpg).join(petrol)
-
-#result = diesel.append([lpg, petrol])
-
-
-frames = [diesel, lpg, petrol]
-
-result = pd.concat(frames, axis=0)
-
-
-
-
-print(diesel)
-print(lpg)
-print(petrol)
-print(result)
-
-
-print("Mean: ")
-print(result.mean());
-print("Median: ")
-print(result.median());
-print("Max: ")
-print(result.max());
-print("Min: ")
-print(result.min());
-print("Standard Deviation: ")
-print(result.std());
-print("Count: ")
-print(result.count());
-
-testValues = result.value_counts()
-
-plt.pie(testValues, labels=testValues)
-plt.show() 
-
-#result = pd.concat(frames, axis = 0)
-
-
-
-
-print("finished?")
-
-#frames = [diesel, lpg, petrol]
-
-#fuel = pd.concat(frames)
-
-
-#print(fuel)
-
-# print("Median: ")
-# print(fuel.median());
-# print("Max: ")
-# print(fuel.max());
-# print("Min: ")
-# print(fuel.min());
-# print("Standard Deviation: ")
-# print(fuel.std());
-# print("Count: ")
-# print(fuel.count());
-
-
-# df.groupby(['fuel_Diesel']).sum().plot(kind='pie', y=fuel.values)
