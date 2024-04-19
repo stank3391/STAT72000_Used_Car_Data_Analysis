@@ -1,4 +1,3 @@
-############Imports#####################
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,13 +12,7 @@ warnings.filterwarnings('ignore')
 sns.set_theme(style="darkgrid")
 
 
-############PREPROCESSING#################
-try:
-    print("original path")
-    data = pd.read_csv("../DataSet/Car details v3.csv")
-except:
-    print("works on my machine path")
-    data = pd.read_csv("./DataSet/Car details v3.csv")
+data = pd.read_csv("../DataSet/Car details v3.csv")
 
 data.describe()
 data.head()
@@ -48,66 +41,44 @@ data['seller_type'] = data['seller_type'].replace({'Trustmark Dealer' : 2, 'Indi
 data.head()
 data['fuel'] = data['fuel'].replace({'LPG': 3, 'CNG': 2, 'Diesel': 1, 'Petrol': 0}) #convert string to number
 data.head()
-
-#### ACTUAL CODE HEREEEEEEE REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-
-#problem is shared database, create new dataframe per data column
-#create a data frame for each column and populate that dataframe with the trimmed data
-#put the trimmed data frame into the dataframes dict
-dataframes = []
-for column in data.columns:
-    df = pd.DataFrame(data[column])
-    q_low = df[column].quantile(0.05)
-    q_hi  = df[column].quantile(0.95)
-    dataframes.append(df[(df[column] < q_hi) & (df[column] > q_low)])
     
+dfs = [data[[col, 'selling_price']] for col in data]
+out = []
+for x in dfs:
+    out.append(x[(np.abs(stats.zscore(x)) < 3).all(axis=1)])
+dfs = out
 
-for column in data.columns:
-    df = pd.DataFrame(data[column])
-
-    print(column + "\n")
+for col in dfs:
     print("Mean: ")
-    print(df[column].mean());
-    print("Median: ")
-    print(df[column].median());
-    print("Max: ")
-    print(df[column].max());
-    print("Min: ")
-    print(df[column].min());
-    print("Standard Deviation: ")
-    print(df[column].std());
-    print("Count: ")
-    print(df[column].count());
-    print("Correlation: ")
-    print(df[column].corr(df['selling_price']))
+    print(col.mean());
+    print("\nMedian: ")
+    print(col.median());
+    print("\nMax: ")
+    print(col.max());
+    print("\nMin: ")
+    print(col.min());
+    print("\nStandard Deviation: ")
+    print(col.std());
+    print("\nCount: ")
+    print(col.count());
+    print("\nCorrelation: ")
+    print(col.corr())
     print("\n\n\n")
 
-for column in data.columns:
-    df = pd.DataFrame(data)
-    # q_low = df[column].quantile(0.05)
-    # q_hi  = df[column].quantile(0.95)
-    # df = df[(df[column] < q_hi) & (df[column] > q_low)]
-    sns.scatterplot(data=df, x=column, y='selling_price')
-    plt.title(f"Scatter Plot between {column} and selling_price")
+for col in dfs:
+    sns.scatterplot(data=col, x=col.iloc[:,0], y=col.iloc[:,1])
+    plt.title(f"Scatter Plot between {col.columns[0]} and {col.columns[1]}.")
     plt.show()
 
-for column in data.columns:
-    df = pd.DataFrame(data)
-    # q_low = df[column].quantile(0.05)
-    # q_hi  = df[column].quantile(0.95)
-    # df = df[(df[column] < q_hi) & (df[column] > q_low)]
-    testValues = df[column].value_counts()
-    plt.pie(testValues, labels=testValues.index, autopct='%1.0f%%', pctdistance=0.8, labeldistance=1.1)    
-    plt.title(f"Distribution of {column} by count.")
-    #plt.legend()
+for col in dfs:
+    count = col.iloc[:,0].value_counts()
+    plt.pie(count, labels=count.index, autopct='%1.0f%%', pctdistance=0.8, labeldistance=1.1)    
+    plt.title(f"Distribution of {col.columns[0]} by Percentage.")
     plt.show()
 
-for column in data.columns:
-    df = pd.DataFrame(data)
-    # q_low = df[column].quantile(0.05)
-    # q_hi  = df[column].quantile(0.95)
-    # df = df[(df[column] < q_hi) & (df[column] > q_low)]
-    sns.histplot(data=df, x=column)
-    plt.title(f"Distribution of {column}")
+for col in dfs:
+    sns.histplot(data=col, x=col.iloc[:,0])
+    plt.title(f"Distribution of Vehicles by {col.columns[0]}.")
     plt.show()
+
 
