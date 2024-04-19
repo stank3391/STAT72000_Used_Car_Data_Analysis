@@ -12,9 +12,9 @@ warnings.filterwarnings('ignore')
 sns.set_theme(style="darkgrid")
 
 try:
-    data = pd.read_csv("../DataSet/Car details v3_cleaned_milage.csv")
+    data = pd.read_csv("../DataSet/Car details v3.csv")
 except:
-    data = pd.read_csv("./DataSet/Car details v3_cleaned_milage.csv")
+    data = pd.read_csv("./DataSet/Car details v3.csv")
 
 data.describe()
 data.head()
