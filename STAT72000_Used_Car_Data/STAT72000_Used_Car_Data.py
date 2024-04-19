@@ -11,8 +11,10 @@ import os
 warnings.filterwarnings('ignore')
 sns.set_theme(style="darkgrid")
 
-
-data = pd.read_csv("../DataSet/Car details v3.csv")
+try:
+    data = pd.read_csv("../DataSet/Car details v3_cleaned_milage.csv")
+except:
+    data = pd.read_csv("./DataSet/Car details v3_cleaned_milage.csv")
 
 data.describe()
 data.head()
